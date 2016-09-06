@@ -2,14 +2,14 @@
 # post install for arch linux + awesome wm desktop, requires git
 
 
-graphical {
+graphical (){
     yaourt -S --noconfirm xbindkeys spotify google-chrome intellij-idea-ultimate-edition playerctl  \
     mopidy-mpris mopidy-spotify mopidy-mopify lain-git gloobus-preview redshift onboard openjdk8    \
     lightdm-gtk-greeter lightdm mpc pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc       \
     transmission-qt
 }
 
-conf {
+conf (){
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
     curl http://j.mp/spf13-vim3 -L -o - | sh
     mkdir -P ~/.config
@@ -31,13 +31,13 @@ conf {
 
 }
 
-headless {
+headless (){
     yaourt -S --noconfirm dex htop-temperature atop cmatrix cowsay dialog openssh iw curl \
         linux-headers ntfs-3g unzip transmission-cli wpa_supplicant hfsprogs  atop cmatrix cowsay dialog openssh 
 }
 
 chmod +x rooted.sh
-sudo rooted.sh 
+sudo bash -c ./rooted.sh 
 
 headless 
 graphical 
