@@ -36,9 +36,11 @@ headless (){
         linux-headers ntfs-3g unzip transmission-cli wpa_supplicant hfsprogs  atop cmatrix cowsay dialog openssh 
 }
 
+# TODO laptop, fonts 
+
 chmod +x rooted.sh
 sudo bash -c ./rooted.sh 
 
 headless 
 graphical 
-conf
+conf # not working
