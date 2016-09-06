@@ -10,8 +10,6 @@ graphical (){
 }
 
 conf (){
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
-    curl http://j.mp/spf13-vim3 -L -o - | sh
     mkdir -P ~/.config
     git clone https://github.com/luben93/awesome-copycats ~/.config/awesome
     ln ~/.config/awesome/rc.lua.powerarrow-darker.luben ~/.config/awesome/rc.lua 
@@ -29,6 +27,8 @@ conf (){
     run '~/.tmux/plugins/tpm/tpm'" >> ~/.tmux.conf 
     ~/.tmux/plugins/tpm/bindings/install_plugins 
 
+    curl http://j.mp/spf13-vim3 -L -o - | sh
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
 }
 
 headless (){
