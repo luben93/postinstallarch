@@ -43,4 +43,4 @@ sudo bash -c ./rooted.sh
 
 headless 
 graphical 
-conf # not working
+#conf # not working
