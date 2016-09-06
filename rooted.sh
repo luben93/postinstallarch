@@ -12,11 +12,5 @@ rooted (){
     pacman -Sy yaourt --noconfirm
 }
 
-headless() {
-    yaourt -S --noconfirm dex htop-temperature atop cmatrix cowsay dialog openssh iw curl \
-        linux-headers ntfs-3g unzip transmission-cli wpa_supplicant hfsprogs  atop cmatrix cowsay dialog openssh 
-}
-
 rooted 
-headless 
 
