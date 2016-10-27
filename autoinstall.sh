@@ -31,7 +31,7 @@ conf (){
 
     curl http://j.mp/spf13-vim3 -L -o - | sh
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
-    #echo alias open=gloobus-preview 
+    #echo alias open=gloobus-preview ~/.zshrc
     #echo "PROMPT+='%{$fg_bold[blue]%} %D %T % %{$reset_color%}'" >> ~/.zshrc
 
 }
