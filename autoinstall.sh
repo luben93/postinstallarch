@@ -3,10 +3,12 @@
 
 
 graphical (){
+    #unless grap exists
     yaourt -S --noconfirm xbindkeys spotify google-chrome intellij-idea-ultimate-edition playerctl  \
-    mopidy-mpris mopidy-spotify mopidy-mopify lain-git gloobus-preview redshift onboard openjdk8    \
+    lain-git gloobus-preview redshift onboard jdk8-openjdk   \
     lightdm-gtk-greeter lightdm mpc pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc       \
     transmission-qt
+    #touch grap
 }
 
 conf (){
@@ -29,18 +31,27 @@ conf (){
 
     curl http://j.mp/spf13-vim3 -L -o - | sh
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
+    #echo alias open=gloobus-preview 
+}
+
+rooted(){
+    #unless rooted exists
+    chmod +x rooted.sh
+    sudo bash -c ./rooted.sh 
+    #touch rooted
 }
 
 headless (){
+    #unless head exists
     yaourt -S --noconfirm dex htop-temperature atop cmatrix cowsay dialog openssh iw curl \
         linux-headers ntfs-3g unzip transmission-cli wpa_supplicant hfsprogs  atop cmatrix cowsay dialog openssh 
+    #touch head
 }
 
-# TODO laptop, fonts 
+# TODO laptop, fonts
 
-chmod +x rooted.sh
-sudo bash -c ./rooted.sh 
 
+rooted
 headless 
 graphical 
 #conf # not working
