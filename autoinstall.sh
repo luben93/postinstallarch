@@ -3,15 +3,16 @@
 
 
 graphical (){
-    #unless grap exists
-    yaourt -S --noconfirm xbindkeys spotify google-chrome intellij-idea-ultimate-edition playerctl  \
-    lain-git gloobus-preview redshift onboard jdk8-openjdk   \
-    lightdm-gtk-greeter lightdm mpc pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc       \
-    transmission-qt
-    #touch grap
+    yaourt -S --noconfirm spotify google-chrome intellij-idea-ultimate-edition playerctl light-locker \
+    lain-git gloobus-preview redshift onboard jdk8-openjdk  lightdm-gtk-greeter lightdm gendesk xclip \
+    pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc transmission-qt alsa-utils pavucontrol
+    thunderbird arandr lastpass qemu libvirt ovmf virt-manager
+    touch grap
 }
 
 conf (){
+    touch confed
+
     mkdir -P ~/.config
     git clone https://github.com/luben93/awesome-copycats ~/.config/awesome
     ln ~/.config/awesome/rc.lua.powerarrow-darker.luben ~/.config/awesome/rc.lua 
@@ -31,29 +32,51 @@ conf (){
 
     curl http://j.mp/spf13-vim3 -L -o - | sh
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
-    #echo alias open=gloobus-preview ~/.zshrc
-    #echo "PROMPT+='%{$fg_bold[blue]%} %D %T % %{$reset_color%}'" >> ~/.zshrc
+    echo "alias open=gloobus-preview" >> ~/.zshrc
+    echo 'alias lock="light-locker-command -l"' >> ~/.zshrc
+    echo "PROMPT+='%{$fg_bold[blue]%} %D %T % %{$reset_color%}'" >> ~/.zshrc
+    #echo "greeter-session=lightdm-gtk-greeter" >> /etc/lightdm/lightdm.conf # not tested
+}
 
+enable(){
+    systemctl enable lightdm
+    systemctl enable lightdm
+    touch enabled
+}
+
+autostart(){
+    gendesk --pkgname thunderbird 
+    gendesk --pkgname spotify 
+    gendesk --pkgname slack-desktop
+    #gendesk --pkgname google-chrome-stable 
+    touch started
 }
 
 rooted(){
-    #unless rooted exists
-    chmod +x rooted.sh
-    sudo bash -c ./rooted.sh 
-    #touch rooted
+        chmod +x rooted.sh
+        sudo bash -c ./rooted.sh 
+        touch rooted
 }
 
 headless (){
-    #unless head exists
     yaourt -S --noconfirm dex htop-temperature atop cmatrix cowsay dialog openssh iw curl \
-        linux-headers ntfs-3g unzip transmission-cli wpa_supplicant hfsprogs  atop cmatrix cowsay dialog openssh 
-    #touch head
+    linux-headers ntfs-3g unzip transmission-cli wpa_supplicant hfsprogs  atop cmatrix cowsay dialog openssh 
+    touch head
 }
 
 # TODO laptop, fonts
 
-
-rooted
-headless 
-graphical 
-#conf # not working
+if [ ! -e rooted ] ; then ;
+    rooted ; fi
+if [ ! -e head ] ; then ;
+    headless ; fi
+if [ ! -e grap ] ; then ;
+    graphical ; fi
+if [ ! -e confed ] ; then ;
+    conf ; fi
+if [ ! -e enabled ] ; then ;
+  #  enable ; 
+fi
+if [ ! -e started ] ; then ;
+  #  autostart ; 
+fi
