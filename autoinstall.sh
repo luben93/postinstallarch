@@ -6,7 +6,7 @@ graphical (){
     yaourt -S --noconfirm spotify google-chrome intellij-idea-ultimate-edition playerctl light-locker \
     lain-git gloobus-preview redshift onboard jdk8-openjdk  lightdm-gtk-greeter lightdm gendesk xclip \
     pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc transmission-qt alsa-utils pavucontrol
-    thunderbird arandr lastpass qemu libvirt ovmf virt-manager
+    thunderbird arandr lastpass qemu libvirt ovmf virt-manager docker docker-compose
     touch grap
 }
 
@@ -34,13 +34,13 @@ conf (){
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
     echo "alias open=gloobus-preview" >> ~/.zshrc
     echo 'alias lock="light-locker-command -l"' >> ~/.zshrc
-    echo "PROMPT+='%{$fg_bold[blue]%} %D %T % %{$reset_color%}'" >> ~/.zshrc
+    echo "PROMPT+='%{$fg_bold[blue]%} %T % %{$reset_color%}'" >> ~/.zshrc
     #echo "greeter-session=lightdm-gtk-greeter" >> /etc/lightdm/lightdm.conf # not tested
 }
 
 enable(){
     systemctl enable lightdm
-    systemctl enable lightdm
+    systemctl enable docker
     touch enabled
 }
 
@@ -75,7 +75,7 @@ if [ ! -e grap ] ; then ;
 if [ ! -e confed ] ; then ;
     conf ; fi
 if [ ! -e enabled ] ; then ;
-  #  enable ; 
+  # sudo enable ; 
 fi
 if [ ! -e started ] ; then ;
   #  autostart ; 
