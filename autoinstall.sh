@@ -7,7 +7,7 @@ graphical (){
     lain-git gloobus-preview redshift onboard jdk8-openjdk  lightdm-gtk-greeter lightdm gendesk xclip \
     pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc transmission-qt alsa-utils pavucontrol
     thunderbird arandr lastpass qemu libvirt ovmf virt-manager docker docker-compose
-    touch grap
+    touch grap arandr
 }
 
 conf (){
@@ -34,7 +34,7 @@ conf (){
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
     echo "alias open=gloobus-preview" >> ~/.zshrc
     echo 'alias lock="light-locker-command -l"' >> ~/.zshrc
-    echo "PROMPT+='%{$fg_bold[blue]%} %T % %{$reset_color%}'" >> ~/.zshrc
+    echo "PROMPT+='%{\$fg_bold[blue]%} %T % %{\$reset_color%}'" >> ~/.zshrc
     #echo "greeter-session=lightdm-gtk-greeter" >> /etc/lightdm/lightdm.conf # not tested
 }
 
@@ -66,17 +66,17 @@ headless (){
 
 # TODO laptop, fonts
 
-if [ ! -e rooted ] ; then ;
+if [ ! -e rooted ] ; then 
     rooted ; fi
-if [ ! -e head ] ; then ;
+if [ ! -e head ] ; then 
     headless ; fi
-if [ ! -e grap ] ; then ;
+if [ ! -e grap ] ; then 
     graphical ; fi
-if [ ! -e confed ] ; then ;
+if [ ! -e confed ] ; then 
     conf ; fi
-if [ ! -e enabled ] ; then ;
+if [ ! -e enabled ] ; then 
   # sudo enable ; 
 fi
-if [ ! -e started ] ; then ;
+if [ ! -e started ] ; then 
   #  autostart ; 
 fi
