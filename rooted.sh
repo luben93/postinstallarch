@@ -5,9 +5,14 @@ rooted (){
     pacman -S sudo git vim zsh  tmux base-devel  --noconfirm
     pacman -S --noconfirm xorg-server awesome termite xterm xorg-xinit # graphical 
     if ! grep archlinuxfr /etc/pacman.conf 
-    then echo '[archlinuxfr]
+    then echo '
+        [archlinuxfr]
         SigLevel = Never
-        Server = http://repo.archlinux.fr/$arch' >> /etc/pacman.conf
+        Server = http://repo.archlinux.fr/$arch
+        
+        [multilib]
+        Include = /etc/pacman.d/mirrorlist
+        ' >> /etc/pacman.conf
     fi
     pacman -Sy yaourt --noconfirm
 }
