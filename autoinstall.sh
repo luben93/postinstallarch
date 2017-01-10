@@ -74,9 +74,8 @@ if [ ! -e grap ] ; then
     graphical ; fi
 if [ ! -e confed ] ; then 
     conf ; fi
-if [ ! -e enabled ] ; then 
-  # sudo enable ; 
-fi
-if [ ! -e started ] ; then 
-  #  autostart ; 
-fi
+#if [ ! -e enabled ] ; then 
+  # sudo enable ;  fi
+#if [ ! -e started ] ; then 
+  #  autostart ;  fi
+
