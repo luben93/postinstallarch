@@ -4,10 +4,10 @@
 
 graphical (){
     yaourt -S --noconfirm spotify google-chrome intellij-idea-ultimate-edition playerctl light-locker \
-    lain-git gloobus-preview redshift onboard jdk8-openjdk  lightdm-gtk-greeter lightdm gendesk xclip \
-    pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc transmission-qt alsa-utils pavucontrol
-    thunderbird arandr lastpass qemu libvirt ovmf virt-manager docker docker-compose
-    touch grap arandr
+    lain-git gloobus-preview redshift onboard  lightdm-gtk-greeter lightdm gendesk xclip \
+    pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc transmission-qt alsa-utils pavucontrol \
+    thunderbird arandr lastpass qemu libvirt ovmf virt-manager arandr slack-desktop
+    touch grap 
 }
 
 conf (){
@@ -41,6 +41,7 @@ conf (){
 enable(){
     systemctl enable lightdm
     systemctl enable docker
+    systemctl enable fstrim.timer
     touch enabled
 }
 
@@ -59,8 +60,8 @@ rooted(){
 }
 
 headless (){
-    yaourt -S --noconfirm dex htop-temperature atop cmatrix cowsay dialog openssh iw curl \
-    linux-headers ntfs-3g unzip transmission-cli wpa_supplicant hfsprogs  atop cmatrix cowsay dialog openssh 
+    yaourt -S --noconfirm dex htop-temperature atop cmatrix cowsay dialog openssh iw curl docker docker-compose \
+    linux-headers ntfs-3g unzip transmission-cli wpa_supplicant hfsprogs  atop cmatrix cowsay dialog openssh jdk8-openjdk
     touch head
 }
 
