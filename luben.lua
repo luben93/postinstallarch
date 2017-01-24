@@ -29,6 +29,7 @@ terminal   = "termite"
 
 -- [[ ALSA volume control
 local mediakeys = {
+  
 awful.key({  }, "XF86AudioRaiseVolume",
 function ()
     os.execute(string.format("amixer set %s 1%%+", volume.channel))
@@ -72,7 +73,43 @@ function ()
     awful.util.spawn_with_shell('playerctl next')
     --awful.util.spawn_with_shell("mpc next || ncmpc next || pms next")
     mpdwidget.update()
-end)}
+end),
+awful.key({  },"XF86LaunchB",
+function ()
+    if lang == 'sv' then
+        lang = 'us' 
+        awful.util.spawn_with_shell('setxkbmap us')
+    else
+        lang = 'sv' 
+        awful.util.spawn_with_shell('setxkbmap se')
+    end
+end),
+awful.key({  },"XF86LaunchA",
+function ()
+    awful.util.spawn_with_shell('xrandr --output eDP1 --auto --output HDMI2 --auto --right-of eDP1')
+end),
+
+awful.key({  },"XF86KbdBrightnessUp",
+function ()
+    awful.util.spawn_with_shell('kbdlight up 10')
+end),
+
+awful.key({  },"XF86KbdBrightnessDown",
+function ()
+    awful.util.spawn_with_shell('kbdlight down 10')
+end),
+
+awful.key({  },"XF86MonBrightnessUp",
+function ()
+    awful.util.spawn_with_shell('light -A 5')
+end),
+
+awful.key({  },"XF86MonBrightnessDown",
+function ()
+    awful.util.spawn_with_shell('light -U 5')
+end),
+  
+}
 local global = root.keys()
 root.keys(global + mediakeys)
 -- ]]
@@ -93,4 +130,6 @@ local sloppyfocus_last = {c=nil}
          end
     end)
 end)
+
+
 
