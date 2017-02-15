@@ -4,7 +4,7 @@
 
 graphical (){
     yaourt -S --noconfirm spotify google-chrome intellij-idea-ultimate-edition playerctl light-locker \
-    lain-git gloobus-preview redshift onboard  lightdm-gtk-greeter lightdm gendesk xclip \
+    gloobus-preview redshift onboard  lightdm-gtk-greeter lightdm gendesk xclip \
     pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc transmission-qt alsa-utils pavucontrol \
     thunderbird arandr lastpass qemu libvirt ovmf virt-manager arandr slack-desktop
     touch grap 
@@ -14,8 +14,10 @@ conf (){
     touch confed
 
     mkdir -P ~/.config
-    git clone https://github.com/luben93/awesome-copycats ~/.config/awesome
-    ln ~/.config/awesome/rc.lua.powerarrow-darker.luben ~/.config/awesome/rc.lua 
+    git clone --recursive https://github.com/copycat-killer/awesome-copycats.git ~/.config/awesome
+    mv rc.lua ~/.config/awesome/rc.lua
+    # git clone https://github.com/luben93/awesome-copycats ~/.config/awesome
+    # ln ~/.config/awesome/rc.lua.powerarrow-darker.luben ~/.config/awesome/rc.lua 
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     echo " set-option -g mouse on
     set -g @continuum-restore 'on'
