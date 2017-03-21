@@ -224,10 +224,10 @@ awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
 {description = "go back", group = "tag"}),
 
 -- Non-empty tag browsing
-awful.key({ altkey }, "Left", function () lain.util.tag_view_nonempty(-1) end,
-{description = "view  previous nonempty", group = "tag"}),
-awful.key({ altkey }, "Right", function () lain.util.tag_view_nonempty(1) end,
-{description = "view  previous nonempty", group = "tag"}),
+-- awful.key({ altkey }, "Left", function () lain.util.tag_view_nonempty(-1) end,
+-- {description = "view  previous nonempty", group = "tag"}),
+-- awful.key({ altkey }, "Right", function () lain.util.tag_view_nonempty(1) end,
+-- {description = "view  previous nonempty", group = "tag"}),
 
 -- Default client focus
 awful.key({ altkey,           }, "j",
@@ -353,16 +353,16 @@ awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7
 awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end),
 
 -- ALSA volume control
-awful.key({ altkey }, "Up",
-function ()
-    os.execute(string.format("amixer set %s 1%%+", beautiful.volume.channel))
-    beautiful.volume.update()
-end),
-awful.key({ altkey }, "Down",
-function ()
-    os.execute(string.format("amixer set %s 1%%-", beautiful.volume.channel))
-    beautiful.volume.update()
-end),
+-- awful.key({ altkey }, "Up",
+-- function ()
+--     os.execute(string.format("amixer set %s 1%%+", beautiful.volume.channel))
+--     beautiful.volume.update()
+-- end),
+-- awful.key({ altkey }, "Down",
+-- function ()
+--     os.execute(string.format("amixer set %s 1%%-", beautiful.volume.channel))
+--     beautiful.volume.update()
+-- end),
 awful.key({ altkey }, "m",
 function ()
     os.execute(string.format("amixer set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
