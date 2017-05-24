@@ -6,7 +6,7 @@ graphical (){
     yaourt -S --noconfirm spotify google-chrome intellij-idea-ultimate-edition playerctl light-locker \
     gloobus-preview redshift onboard  lightdm-gtk-greeter lightdm gendesk xclip \
     pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc transmission-qt alsa-utils pavucontrol \
-    thunderbird arandr lastpass qemu libvirt ovmf virt-manager arandr slack-desktop
+    thunderbird arandr lastpass qemu libvirt ovmf virt-manager arandr slack-desktop darktable gdb
     touch grap 
 }
 
