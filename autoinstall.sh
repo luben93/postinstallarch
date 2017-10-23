@@ -3,11 +3,15 @@
 
 
 graphical (){
-    yaourt -S --noconfirm spotify google-chrome intellij-idea-ultimate-edition playerctl light-locker \
-    gloobus-preview redshift onboard  lightdm-gtk-greeter lightdm gendesk xclip \
+    yaourt -S --noconfirm spotify firefox intellij-idea-community-edition  \
+    gloobus-preview redshift onboard  cool-retro-term gendesk xclip playerctl light-locker lightdm-gtk-greeter lightdm \
     pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc transmission-qt alsa-utils pavucontrol \
     thunderbird arandr lastpass qemu libvirt ovmf virt-manager arandr slack-desktop darktable gdb
-    touch grap 
+    touch grap  
+}
+
+gnome (){
+    yaourt -S --noconfirm gnome-shell-extension-pixel-saver gnome
 }
 
 conf (){
@@ -38,10 +42,12 @@ conf (){
     echo 'alias lock="light-locker-command -l"' >> ~/.zshrc
     echo "PROMPT+='%{\$fg_bold[blue]%} %T % %{\$reset_color%}'" >> ~/.zshrc
     #echo "greeter-session=lightdm-gtk-greeter" >> /etc/lightdm/lightdm.conf # not tested
+    
+    gsettings set org.gnome.desktop.lockdown disable-lock-screen true #in gnome 
 }
 
 enable(){
-    systemctl enable lightdm
+    #systemctl enable lightdm
     systemctl enable docker
     systemctl enable fstrim.timer
     touch enabled
