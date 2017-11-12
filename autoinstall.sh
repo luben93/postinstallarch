@@ -11,7 +11,8 @@ graphical (){
 }
 
 gnome (){
-    yaourt -S --noconfirm gnome-shell-extension-pixel-saver gnome
+    yaourt -S --noconfirm gnome-shell-extension-pixel-saver gnome gnome-shell-extension-audio-output-switcher-git gnome-tweak-tool
+    #tweaktools and activate
 }
 
 conf (){
@@ -44,6 +45,7 @@ conf (){
     #echo "greeter-session=lightdm-gtk-greeter" >> /etc/lightdm/lightdm.conf # not tested
     
     gsettings set org.gnome.desktop.lockdown disable-lock-screen true #in gnome 
+    #also add 'en' and 'sv' as input, set mouse to lazy switching
 }
 
 enable(){
