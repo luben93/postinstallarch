@@ -70,7 +70,7 @@ rooted(){
 }
 
 headless (){
-    yaourt -S --noconfirm dex htop-temperature atop cmatrix cowsay dialog openssh iw curl docker docker-compose \
+    yaourt -S --noconfirm dex htop-temperature atop cmatrix cowsay dialog openssh iw curl docker docker-compose vim-fakeclip \
     linux-headers ntfs-3g unzip transmission-cli wpa_supplicant hfsprogs  atop cmatrix cowsay dialog openssh jdk8-openjdk
     touch head
 }
