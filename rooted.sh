@@ -15,6 +15,16 @@ rooted (){
         ' >> /etc/pacman.conf
     fi
     pacman -Sy yaourt --noconfirm
+    
+    echo '
+Section "InputClass"
+        Identifier "system-keyboard"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "us,se"
+        Option "XkbVariant" ","
+        Option "XkbOptions" "grp:alt_shift_toggle"
+EndSection' >> /etc/X11/xorg.conf.d/00-keyboard.conf
+
 }
 
 rooted 
