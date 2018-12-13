@@ -13,6 +13,9 @@ graphical (){
 gnome (){
     yaourt -S --noconfirm gnome-shell-extension-pixel-saver gnome gnome-shell-extension-audio-output-switcher-git gnome-tweak-tool
     #tweaktools and activate
+    # set mouse to lazy switching
+    gsettings set org.gnome.desktop.lockdown disable-lock-screen true #in gnome 
+
 }
 
 conf (){
@@ -44,8 +47,7 @@ conf (){
     echo "PROMPT+='%{\$fg_bold[blue]%} %T % %{\$reset_color%}'" >> ~/.zshrc
     #echo "greeter-session=lightdm-gtk-greeter" >> /etc/lightdm/lightdm.conf # not tested
     
-    gsettings set org.gnome.desktop.lockdown disable-lock-screen true #in gnome 
-    #also add 'en' and 'sv' as input, set mouse to lazy switching
+    
 }
 
 enable(){
@@ -57,9 +59,12 @@ enable(){
 
 autostart(){
     gendesk --pkgname thunderbird 
-    gendesk --pkgname spotify 
+    #gendesk --pkgname spotify 
     gendesk --pkgname slack-desktop
     #gendesk --pkgname google-chrome-stable 
+    #nitrogen --restore
+    #xscreensaver -no-splash
+    #Exec=sh /home/luben/.screenlayout/default.sh #(save with arandr)
     touch started
 }
 
