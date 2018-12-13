@@ -55,11 +55,12 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "urxvtd", "unclutter -root" })
+run_once({ "urxvtd", "unclutter -root" ,"dex -ae awesome"})
+--run_once({ "urxvtd", "unclutter -root" ,"dex -ae awesome","xscreensaver -no-splash &"})
 -- }}}
 
 -- {{{ Variable definitions
-local chosen_theme =  "powerarrow-darker"
+local chosen_theme =  "powerarrow-dark"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "termite" or "xterm"
@@ -68,7 +69,7 @@ local gui_editor   = "gvim"
 local browser      = "firefox"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1", "2", "3", "4", "5" }
+awful.util.tagnames = { "1", "2", "3", "4", "5","6","7" }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
@@ -224,10 +225,10 @@ awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
 {description = "go back", group = "tag"}),
 
 -- Non-empty tag browsing
--- awful.key({ altkey }, "Left", function () lain.util.tag_view_nonempty(-1) end,
--- {description = "view  previous nonempty", group = "tag"}),
--- awful.key({ altkey }, "Right", function () lain.util.tag_view_nonempty(1) end,
--- {description = "view  previous nonempty", group = "tag"}),
+--awful.key({ altkey }, "Left", function () lain.util.tag_view_nonempty(-1) end,
+--{description = "view  previous nonempty", group = "tag"}),
+--awful.key({ altkey }, "Right", function () lain.util.tag_view_nonempty(1) end,
+--{description = "view  previous nonempty", group = "tag"}),
 
 -- Default client focus
 awful.key({ altkey,           }, "j",
@@ -354,15 +355,15 @@ awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weat
 
 -- ALSA volume control
 -- awful.key({ altkey }, "Up",
--- function ()
---     os.execute(string.format("amixer set %s 1%%+", beautiful.volume.channel))
---     beautiful.volume.update()
--- end),
--- awful.key({ altkey }, "Down",
--- function ()
---     os.execute(string.format("amixer set %s 1%%-", beautiful.volume.channel))
---     beautiful.volume.update()
--- end),
+--function ()
+--    os.execute(string.format("amixer set %s 1%%+", beautiful.volume.channel))
+--    beautiful.volume.update()
+--end),
+--awful.key({ altkey }, "Down",
+--function ()
+--    os.execute(string.format("amixer set %s 1%%-", beautiful.volume.channel))
+--    beautiful.volume.update()
+--end),
 awful.key({ altkey }, "m",
 function ()
     os.execute(string.format("amixer set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
@@ -458,6 +459,17 @@ function ()
     end
     naughty.notify(common)
 end),
+
+--awful.key({  } , "Print",
+--function()
+--    awful.spawn_with_shell('gnome-screenshot -i')
+--end),
+
+--awful.key({ modkey, "Control"  }, "t",
+--   function (c)
+--          -- toggle titlebar
+--        awful.titlebar.toggle(c)
+--end),
 
 -- Copy primary to clipboard (terminals to gtk)
 awful.key({ modkey }, "c", function () awful.spawn("xsel | xsel -i -b") end),
@@ -611,7 +623,7 @@ awful.rules.rules = {
 
     -- Set Firefox to always map on the first tag on screen 1.
     { rule = { class = "Firefox" },
-    properties = { screen = 1, tag = screen[1].tags[1] } },
+    properties = { screen = 2, tag = screen[1].tags[1] } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
     properties = { maximized = true } },
