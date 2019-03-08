@@ -55,7 +55,7 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "urxvtd", "unclutter -root" ,"dex -ae awesome"})
+run_once({ "xmodmap /home/luben/.Xmodmap", "unclutter -root" ,"dex -ae awesome"})
 --run_once({ "urxvtd", "unclutter -root" ,"dex -ae awesome","xscreensaver -no-splash &"})
 -- }}}
 
@@ -65,20 +65,20 @@ local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "termite" or "xterm"
 local editor       = os.getenv("EDITOR") or "vim" or "vi"
-local gui_editor   = "gvim"
+local gui_editor   = "code"
 local browser      = "firefox"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1", "2", "3", "4", "5","6","7" }
+awful.util.tagnames = { "coms", "web", "code", "api", "5","6","7","8","9" }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
-    --awful.layout.suit.fair,
+    awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
-    --awful.layout.suit.spiral,
+        awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
     --awful.layout.suit.max,
     --awful.layout.suit.max.fullscreen,
@@ -87,7 +87,7 @@ awful.layout.layouts = {
     --awful.layout.suit.corner.ne,
     --awful.layout.suit.corner.sw,
     --awful.layout.suit.corner.se,
-    --lain.layout.cascade,
+  --  lain.layout.cascade,
     --lain.layout.cascade.tile,
     --lain.layout.centerwork,
     --lain.layout.centerwork.horizontal,
@@ -437,6 +437,19 @@ function ()
     beautiful.mpd.update()
 
 end),
+awful.key({  }, "XF86MonBrightnessUp",
+function ()
+    awful.util.spawn_with_shell('light -A 10')
+
+end),
+awful.key({  }, "XF86MonBrightnessDown",
+function ()
+    awful.util.spawn_with_shell('light -U 10')
+
+end),
+
+
+
 awful.key({ altkey, "Control" }, "Left",
 function ()
     awful.spawn.with_shell("mpc prev")
@@ -623,7 +636,16 @@ awful.rules.rules = {
 
     -- Set Firefox to always map on the first tag on screen 1.
     { rule = { class = "Firefox" },
-    properties = { screen = 2, tag = screen[1].tags[1] } },
+    properties = { screen = 2, tag = "web" } },
+
+    { rule= { class="thunderbird" },
+    properties = { screen = 3, tag = "coms" }},
+    { rule= { class="slack" },
+    properties = { screen = 3, tag = "coms" }},
+
+    { rule= { class="code" },
+    properties = { tag = "code" }},
+
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
     properties = { maximized = true } },
@@ -699,6 +721,53 @@ client.connect_signal("mouse::enter", function(c)
     if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
         and awful.client.focus.filter(c) then
         client.focus = c
+    end
+end)
+--client.connect_signal("request::screen", function(c)
+--        awful.tag.setscreen(1,5)
+--end)
+--tag.connect_signal("request::screen", function(t)
+--    for s in screen do
+--        if s ~= t.screen and
+--           s.geometry.x == t.screen.geometry.x and
+--           s.geometry.y == t.screen.geometry.y and
+--           s.geometry.width == t.screen.geometry.width and
+--           s.geometry.height == t.screen.geometry.height then
+--            local t2 = awful.tag.find_by_name(s, t.name)
+--            if t2 then
+--                t:swap(t2)
+--            else
+--                t.screen = s
+--            end
+--            return
+--        end
+--    end
+--end)
+tag.connect_signal("request::screen", function(t)
+    clients = t:clients()
+    for s in screen do
+        if s ~= t.screen and clients and next(clients) then
+            t.screen = s
+            t.original_tag_name = t.original_tag_name or t.name
+            t.name = t.name .. "'"
+            t.volatile = true
+            return
+        end
+    end
+end)
+
+screen.connect_signal("added", function(s)
+    for k,t in pairs(root.tags()) do
+        if t.original_tag_name then
+          -- find the new tag on the new screen
+            new_tag = awful.tag.find_by_name(s, t.original_tag_name)
+            if new_tag then
+                t.name = t.original_tag_name
+                t.original_tag_name = nil
+                new_tag:swap(t)
+                new_tag:delete(t, true)
+            end
+        end
     end
 end)
 
