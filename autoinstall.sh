@@ -46,8 +46,8 @@ conf (){
     echo 'alias lock="light-locker-command -l"' >> ~/.zshrc
     echo "PROMPT+='%{\$fg_bold[blue]%} %T % %{\$reset_color%}'" >> ~/.zshrc
     #echo "greeter-session=lightdm-gtk-greeter" >> /etc/lightdm/lightdm.conf # not tested
-    
-    
+    git clone git@github.com:wertarbyte/autorandr.git
+    cp autorandr/autorandr /bin/autorandr
 }
 
 enable(){
