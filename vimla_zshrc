@@ -49,3 +49,4 @@ load-project-controll() {
     fi
 } 
 add-zsh-hook chpwd load-project-controll 
+load-project-controll 
