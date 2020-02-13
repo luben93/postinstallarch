@@ -3,7 +3,7 @@
 
 
 graphical (){
-    yaourt -S --noconfirm spotify firefox intellij-idea-community-edition  \
+    yay -S --noconfirm spotify firefox intellij-idea-community-edition  \
     gloobus-preview redshift onboard  cool-retro-term gendesk xclip playerctl light-locker lightdm-gtk-greeter lightdm \
     pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc transmission-qt alsa-utils pavucontrol nitrogen \
     thunderbird arandr lastpass qemu libvirt ovmf virt-manager arandr slack-desktop darktable gdb calibre eog #evince-no-gnome
@@ -11,11 +11,16 @@ graphical (){
 }
 
 gnome (){
-    yaourt -S --noconfirm gnome-shell-extension-pixel-saver gnome gnome-shell-extension-audio-output-switcher-git gnome-tweak-tool
+    yay -S --noconfirm gnome-shell-extension-pixel-saver gnome gnome-shell-extension-audio-output-switcher-git gnome-tweak-tool
     #tweaktools and activate
     # set mouse to lazy switching
     gsettings set org.gnome.desktop.lockdown disable-lock-screen true #in gnome 
 
+}
+
+sway (){
+    yay -S --noconfirm sway swaybg swayidle swaylock-blur j4-dmenu-desktop i3status-rust-git
+    touch sway
 }
 
 conf (){
@@ -48,6 +53,7 @@ conf (){
     #echo "greeter-session=lightdm-gtk-greeter" >> /etc/lightdm/lightdm.conf # not tested
     git clone git@github.com:wertarbyte/autorandr.git
     cp autorandr/autorandr /bin/autorandr
+    cp -r .config ~/.config
 }
 
 enable(){
@@ -94,4 +100,6 @@ if [ ! -e confed ] ; then
   # sudo enable ;  fi
 #if [ ! -e started ] ; then 
   #  autostart ;  fi
+if [ ! -e sway ] ; then
+    sway ; fi
 
