@@ -29,7 +29,10 @@ font pango:monospace 8
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- swaylock 
 #exec --no-startup-id swayidle timeout 300 "systemctl suspend"
 exec --no-startup-id swayidle -w                 timeout 300 'swaylock-blur -- -f' timeout 360 'systemctl suspend' before-sleep 'swaylock-blur -- -f'
-exec --no-startup-id dex -ae sway
+#exec --no-startup-id dex -ae sway
+exec slack
+exec thunderbird
+exec mako
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -211,7 +214,7 @@ output "eDP-1" {
 output "DP-1" {
 	pos 1940 0
 	transform normal
-    scale 1.25
+    #scale 1.25 #ugly with intellij 
 }
 
 output "*" bg /home/luben/Pictures/wallpapers/mea\ 1.jpg fill
