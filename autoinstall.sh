@@ -19,7 +19,7 @@ gnome (){
 }
 
 sway (){
-    yay -S --noconfirm sway swaybg swayidle swaylock-blur j4-dmenu-desktop i3status-rust-git
+    yay -S --noconfirm sway swaybg swayidle swaylock-blur j4-dmenu-desktop i3status-rust-git mako bemenu
     touch sway
 }
 
