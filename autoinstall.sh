@@ -4,7 +4,7 @@
 
 graphical (){
     yay -S --noconfirm spotify firefox brave intellij-idea-community-edition  \
-    gloobus-preview redshift onboard  cool-retro-term gendesk xclip playerctl  \ # light-locker lightdm-gtk-greeter lightdm
+    gloobus-preview redshift onboard guake cool-retro-term gendesk xclip playerctl  \ # light-locker lightdm-gtk-greeter lightdm
     pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc transmission-qt alsa-utils pavucontrol nitrogen \
     thunderbird arandr lastpass arandr slack-desktop darktable gdb calibre eog #    qemu libvirt ovmf virt-manager evince-no-gnome
     touch grap  
