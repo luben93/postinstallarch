@@ -3,18 +3,23 @@
 
 
 graphical (){
-    yay -S --noconfirm spotify firefox intellij-idea-community-edition  \
-    gloobus-preview redshift onboard  cool-retro-term gendesk xclip playerctl light-locker lightdm-gtk-greeter lightdm \
+    yay -S --noconfirm spotify firefox brave intellij-idea-community-edition  \
+    gloobus-preview redshift onboard  cool-retro-term gendesk xclip playerctl  \ # light-locker lightdm-gtk-greeter lightdm
     pulseaudio pulseaudio-alsa pulseaudio-ctl screenfetch vlc transmission-qt alsa-utils pavucontrol nitrogen \
-    thunderbird arandr lastpass qemu libvirt ovmf virt-manager arandr slack-desktop darktable gdb calibre eog #evince-no-gnome
+    thunderbird arandr lastpass arandr slack-desktop darktable gdb calibre eog #    qemu libvirt ovmf virt-manager evince-no-gnome
     touch grap  
 }
 
+tilingNoGnome (){
+    yay -S --noconfirm light-locker lightdm-gtk-greeter lightdm awesome 
+    touch nognome
+}
+
 gnome (){
-    yay -S --noconfirm gnome-shell-extension-pixel-saver gnome gnome-shell-extension-audio-output-switcher-git gnome-tweak-tool
+    yay -S --noconfirm gnome-shell-extension-pixel-saver gnome gnome-shell-extension-audio-output-switcher-git gnome-tweak-tool gnome-shell-extension-tray-icons
     #tweaktools and activate
     # set mouse to lazy switching
-    gsettings set org.gnome.desktop.lockdown disable-lock-screen true #in gnome 
+    # gsettings set org.gnome.desktop.lockdown disable-lock-screen true #in gnome 
 
 }
 
@@ -45,14 +50,14 @@ conf (){
     run '~/.tmux/plugins/tpm/tpm'" >> ~/.tmux.conf 
     ~/.tmux/plugins/tpm/bindings/install_plugins 
 
-    curl http://j.mp/spf13-vim3 -L -o - | sh
+    curl -sLf https://spacevim.org/install.sh | bash
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
     echo "alias open=gloobus-preview" >> ~/.zshrc
-    echo 'alias lock="light-locker-command -l"' >> ~/.zshrc
+    #echo 'alias lock="light-locker-command -l"' >> ~/.zshrc
     echo "PROMPT+='%{\$fg_bold[blue]%} %T % %{\$reset_color%}'" >> ~/.zshrc
     #echo "greeter-session=lightdm-gtk-greeter" >> /etc/lightdm/lightdm.conf # not tested
-    git clone git@github.com:wertarbyte/autorandr.git
-    cp autorandr/autorandr /bin/autorandr
+    #git clone git@github.com:wertarbyte/autorandr.git
+    #cp autorandr/autorandr /bin/autorandr
     cp -r .config ~/.config
 }
 
@@ -64,7 +69,7 @@ enable(){
 }
 
 autostart(){
-    gendesk --pkgname thunderbird 
+    #gendesk --pkgname thunderbird 
     #gendesk --pkgname spotify 
     gendesk --pkgname slack-desktop
     #gendesk --pkgname google-chrome-stable 
@@ -82,7 +87,7 @@ rooted(){
 
 headless (){
     yaourt -S --noconfirm dex htop-temperature atop cmatrix cowsay dialog openssh iw curl docker docker-compose vim-fakeclip \
-    linux-headers ntfs-3g unzip transmission-cli wpa_supplicant hfsprogs  atop cmatrix cowsay dialog openssh jdk8-openjdk
+    linux-headers ntfs-3g unzip transmission-cli wpa_supplicant hfsprogs jdk8-openjdk
     touch head
 }
 
@@ -96,6 +101,8 @@ if [ ! -e grap ] ; then
     graphical ; fi
 if [ ! -e confed ] ; then 
     conf ; fi
+#if [ ! -e nognome ] ; then
+#    tilingNoGnome ; fi
 #if [ ! -e enabled ] ; then 
   # sudo enable ;  fi
 #if [ ! -e started ] ; then 
